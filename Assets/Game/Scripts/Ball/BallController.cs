@@ -5,11 +5,12 @@ using UnityEngine;
 
 public class BallController : MonoBehaviour
 {
-    [SerializeField] private Vector3 _ballDirecton;
-
+    private Vector3 _ballDirection;
+    public static event Action<Vector3> OnBallDirectionChanged;
+    
     private void Start()
     {
-        _ballDirecton = Vector3.left;
+        _ballDirection = Vector3.left;
     }
 
     private void Update()
@@ -23,11 +24,12 @@ public class BallController : MonoBehaviour
             ChangeBallDirection();
     }
 
-    private void ChangeBallDirection()
+    public void ChangeBallDirection()
     {
-        if (_ballDirecton.x == -1)
-            _ballDirecton = Vector3.forward;
+        if (_ballDirection.x == -1)
+            _ballDirection = Vector3.forward;
         else
-            _ballDirecton = Vector3.left;
+            _ballDirection = Vector3.left;
+        OnBallDirectionChanged?.Invoke(_ballDirection);
     }
 }
