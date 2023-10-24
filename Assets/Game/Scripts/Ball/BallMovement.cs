@@ -10,12 +10,12 @@ public class BallMovement : MonoBehaviour
 
     private void OnEnable()
     {
-        BallController.OnBallDirectionChanged += GetMove;
+        BallController.OnBallDirectionChanged += GetMoveDirection;
     }
 
     private void OnDisable()
     {
-        BallController.OnBallDirectionChanged -= GetMove;
+        BallController.OnBallDirectionChanged -= GetMoveDirection;
     }
 
     private void Update()
@@ -31,7 +31,7 @@ public class BallMovement : MonoBehaviour
         }
     }
 
-    private void GetMove(Vector3 ballDirection)
+    private void GetMoveDirection(Vector3 ballDirection)
     {
         _ballDirection = ballDirection;
     }
